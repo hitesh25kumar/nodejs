@@ -1,29 +1,58 @@
 import User from "../models/User";
-import { validationResult } from 'express-validator';
+import {
+    validationResult
+} from 'express-validator';
+import {
+    Utils
+} from '../utils/utils';
 
 export class UserController {
-    static signup(req,res,next){
-       const error = validationResult(req);
-       const email = req.body.email;
-       const password = req.body.password;
-       const username = req.body.username;
-       if(!error.isEmpty()){
-           next(new Error(error.array()[0].msg))
-           return;
-       }
+    static async signup(req, res, next) {
+        const email = req.body.email;
+        const password = req.body.password;
+        const username = req.body.username;
 
-const data = {
-email:email,
-password:password,
-username:username
-};
+        const data = {
+            email: email,
+            password: password,
+            username: username,
+            verification_token: Utils.generateVerificationToken(),
+            verification_token_time: Date.now() + new Utils().MAX_TOKEN_TIME
+        };
 
-let user = new User(data);
-user.save().then((user) => {
-    res.send(user);
-}).catch(err => {
-    next(err);
-})
+        try {
+            let user = await new User(data).save();
+            res.send(user);
+        } catch (e) {
+            next(e);
+        }
 
+    }
+
+    static async verify(req, res, next) {
+
+        const verificationToken = req.body.verification_token;
+        const email = req.body.email;
+        try {
+            const user = await User.findOneAndUpdate({
+                email: email,
+                verification_token: verificationToken,
+                verification_token_time: {
+                    $gt: Date.now()
+                }
+            }, {
+                verified: true
+            }, {
+                new: true
+            })
+
+            if (user) {
+                res.send(user);
+            } else {
+                throw new Error('Verification Token is Expired.Please Request for a new One');
+            }
+        } catch (e) {
+            next(e);
+        }
     }
 }
