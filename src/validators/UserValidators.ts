@@ -18,6 +18,10 @@ export class UserValidators {
     }
 
     static verifyUser(){
-        return [body('verification_token','Verification Token is Required').isEmail()]
+        return [body('verification_token','Verification Token is Required').isNumeric(),body('email','Email is Required').isEmail()]
+    }
+
+    static resendVerificationEmail() {
+        // return[query('email').isEmail()]
     }
 }

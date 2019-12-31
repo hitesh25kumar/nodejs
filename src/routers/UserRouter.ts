@@ -20,7 +20,7 @@ import { GlobalMiddleWare } from "../middlewares/GlobalMiddleware";
     }
 
     getRoutes(){
-
+        this.router.get('/send/verification/email',UserController.resendVerificationEmail)
     }
 
     postRoutes(){ 
@@ -28,7 +28,7 @@ import { GlobalMiddleWare } from "../middlewares/GlobalMiddleware";
     }
 
     patchRoutes(){
-        this.router.patch('/signup',UserValidators.verifyUser(),GlobalMiddleWare.checkError, UserController.verify)
+        this.router.patch('/verify',UserValidators.verifyUser(),GlobalMiddleWare.checkError, UserController.verify)
     }
 
     deleteRoutes(){
