@@ -1,4 +1,4 @@
-import { body } from 'express-validator';
+import { body, query } from 'express-validator';
 import User from '../models/User';
 export class UserValidators {
     static signup(){
@@ -18,10 +18,24 @@ export class UserValidators {
     }
 
     static verifyUser(){
-        return [body('verification_token','Verification Token is Required').isNumeric(),body('email','Email is Required').isEmail()]
+        return [body('verification_token','Verification Token is Required').isNumeric()]
     }
 
     static resendVerificationEmail() {
-        // return[query('email').isEmail()]
+        return[query('email','Email is required').isEmail()]
+    }
+
+    static login(){
+        return [query('email','Email is required').isEmail().custom((email, {req}) => {
+            return User.findOne({ email:email}).then(user => {
+                if(user){
+                    req.user = user;
+                    return true;
+                }
+                else{
+                  throw new Error('User does not exist')  
+                }
+            })
+        }), query('password','Password is Required').isAlphanumeric()]
     }
 }
