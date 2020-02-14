@@ -1,8 +1,8 @@
 import { Router } from "express";
 import {UserController} from '../controllers/UserController';
 import {UserValidators} from '../validators/UserValidators';
-import {body} from 'express-validator';
 import { GlobalMiddleWare } from "../middlewares/GlobalMiddleware";
+import { Utils } from "../utils/utils";
 
  class UserRouter {
     public router: Router;
@@ -22,15 +22,19 @@ import { GlobalMiddleWare } from "../middlewares/GlobalMiddleware";
     getRoutes(){
         this.router.get('/send/verification/email', GlobalMiddleWare.authenticate,UserController.resendVerificationEmail)
     this.router.get('/login',UserValidators.login(),GlobalMiddleWare.checkError,UserController.login)
-    }
+this.router.get('/reset/password', UserValidators.SendResetPasswordEmail(),GlobalMiddleWare.checkError,UserController.sendResetPasswordEmail);
+this.router.get('/verify/resetPasswordToken',UserValidators.VerifyResetPasswordToken(),GlobalMiddleWare.checkError,UserController.VerifyResetPasswordToken)
+}
 
     postRoutes(){ 
-        this.router.post( '/signup',UserValidators.signup(),GlobalMiddleWare.checkError, UserController.signup) 
+        this.router.post('/signup',UserValidators.signup(),GlobalMiddleWare.checkError,UserController.signup) 
     }
 
     patchRoutes(){
         this.router.patch('/verify',UserValidators.verifyUser(),GlobalMiddleWare.checkError,GlobalMiddleWare.authenticate, UserController.verify)
-    }
+    this.router.patch('/reset/password',UserValidators.resetPassword(),GlobalMiddleWare.checkError,UserController.resetPassword)
+this.router.patch('/update/profilePic',new Utils().multer.single('profile_pic'),GlobalMiddleWare.authenticate,UserValidators.updateProfilePic(),GlobalMiddleWare.checkError,UserController.updateProfilePic)    
+}
 
     deleteRoutes(){
         

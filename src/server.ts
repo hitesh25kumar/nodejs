@@ -24,6 +24,7 @@ configureBodyParser(){
 }
 
 setRoutes(){
+    this.app.use('/src/uploads', express.static('src/uploads'));
    this.app.use('/api/user/', UserRouter);
 }
 
@@ -48,7 +49,7 @@ handleErrors(){
 
 connectMongodb(){
     const databaseUrl = getEnvironmentVariables().db_url;
-    mongoose.connect( databaseUrl, { useNewUrlParser: true,useUnifiedTopology: true }).then(
+    mongoose.connect( databaseUrl, { useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify: false }).then(
         () => console.log('connected to db'))
 }
 
