@@ -22,4 +22,37 @@ catch(e){
 }
 
     }
+
+    static async editComment(req,res,next){
+const content = req.body.content;
+const commentId = req.params.id;
+
+try{
+    const updatedComment = await Comment.findOneAndUpdate({_id: commentId},{
+        content: content,
+        updated_at: Date.now()
+    },{new:true})
+    if(updatedComment){
+res.send(updatedComment);
+    }
+    else{
+        throw new Error('Comment does not exist');
+    }
+}
+catch(e){
+    next(e);
+}
+    }
+
+    static async deleteComment(req,res,next){
+        const comment = req.comment;
+        console.log('comment: ', comment);
+        try{
+            comment.remove();
+            res.send(comment);
+        }
+        catch(e){
+            next(e);
+        }
+    }
 }

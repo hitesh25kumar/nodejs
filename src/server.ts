@@ -29,7 +29,7 @@ setRoutes(){
     this.app.use('/src/uploads', express.static('src/uploads'));
    this.app.use('/api/user/', UserRouter);
    this.app.use('/api/post/', PostRouter);
-   this.app.use('/api/comment', CommentRouter);
+   this.app.use('/api/comment/', CommentRouter);
 }
 
 error404Handler(){

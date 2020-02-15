@@ -25,14 +25,15 @@ getRoutes(){
 }
 
 postRoutes(){ 
-    this.router.post('/add/:id',GlobalMiddleWare.authenticate,CommentValidators.addComment(),GlobalMiddleWare.checkError,CommentController.addComment) 
+    this.router.post('/add/:id',GlobalMiddleWare.authenticate,CommentValidators.addComment(),GlobalMiddleWare.checkError,CommentController.addComment);
 }
 
 patchRoutes(){
+    this.router.patch('/edit/:id',GlobalMiddleWare.authenticate,CommentValidators.editComment(),GlobalMiddleWare.checkError,CommentController.editComment);
 }
 
 deleteRoutes(){
-    
+    this.router.delete('/delete/:id',GlobalMiddleWare.authenticate,CommentValidators.deleteComment(),GlobalMiddleWare.checkError,CommentController.deleteComment);
 }
 }
 

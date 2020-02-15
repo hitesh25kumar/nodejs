@@ -29,10 +29,11 @@ import { GlobalMiddleWare } from "../middlewares/GlobalMiddleware";
     }
 
     patchRoutes(){
+        this.router.patch('/edit/:id',GlobalMiddleWare.authenticate,PostValidators.editPost(),GlobalMiddleWare.checkError,PostController.editPost)
     }
 
     deleteRoutes(){
-        
+      this.router.delete('/delete/:id',GlobalMiddleWare.authenticate,PostValidators.deletePost(),GlobalMiddleWare.checkError,PostController.deletePost)
     }
 }
 

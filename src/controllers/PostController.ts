@@ -86,4 +86,40 @@ catch(e){
         static async getPostById(req,res,next){
 res.json({post:req.post,commentCount: req.post.commentCount});
         }
+
+        static async editPost(req,res,next){
+            const content = req.body.content;
+            console.log('content: ', content);
+            const postId = req.params.id;
+            console.log('postId: ', postId);
+        try{
+            const updatedPost = await Post.findOneAndUpdate({_id: postId},{
+                content:content,
+                updated_at: new Date()
+            },{new:true}).populate('comments');
+
+            if(updatedPost){
+                res.send(updatedPost);
+            }
+            else{
+                throw new Error('Post does not exist');
+            }
+        }
+
+        catch(e){
+            next(e);
+        }
+
+        }
+
+        static async deletePost(req,res,next){
+            const post = req.post;
+            try{
+await post.remove();
+res.send(post);
+            }
+            catch(e){
+                next(e)
+            }
+        }
 }
