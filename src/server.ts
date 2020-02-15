@@ -3,6 +3,8 @@ import * as mongoose from 'mongoose';
 import  * as bodyParser from 'body-parser';
 import { getEnvironmentVariables } from './environments/env';
 import UserRouter from './routers/UserRouter';
+import PostRouter from './routers/PostRouter';
+import CommentRouter from './routers/CommentRouter';
 
 export class Server {
 public app: express.Application = express();
@@ -26,6 +28,8 @@ configureBodyParser(){
 setRoutes(){
     this.app.use('/src/uploads', express.static('src/uploads'));
    this.app.use('/api/user/', UserRouter);
+   this.app.use('/api/post/', PostRouter);
+   this.app.use('/api/comment', CommentRouter);
 }
 
 error404Handler(){
