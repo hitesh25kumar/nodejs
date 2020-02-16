@@ -3,6 +3,7 @@ import { model } from 'mongoose';
 
 const userSchema = new mongoose.Schema({
     email: {type: String, required: true},
+    // email: {type: String, required: true,index:{background:true,unique:true}},
     password: {type: String, required: true},
     verified: {type: Boolean, required: true, default: false},
     verification_token: { type: Number, required: true},
@@ -14,5 +15,7 @@ const userSchema = new mongoose.Schema({
     created_at:{type: Date, required: true, default: new Date()},
     updated_at:{type: Date, required: true, default: new Date()}
 });
+
+// userSchema.index({username:1,password:1},{background:true})
 
 export default model('users' , userSchema)

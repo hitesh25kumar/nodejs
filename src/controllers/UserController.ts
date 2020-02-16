@@ -212,4 +212,9 @@ catch(e){
 }
 }
 
+static async test(req,res,next){
+    const user = await User.find({email: 'hitesh25kumar@gmail.com'}).setOptions({explain:'executionStats'});
+    res.send(user);
+}
+
 }

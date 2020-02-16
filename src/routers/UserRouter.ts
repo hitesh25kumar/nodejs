@@ -24,6 +24,7 @@ import { Utils } from "../utils/utils";
     this.router.get('/login',UserValidators.login(),GlobalMiddleWare.checkError,UserController.login)
 this.router.get('/reset/password', UserValidators.SendResetPasswordEmail(),GlobalMiddleWare.checkError,UserController.sendResetPasswordEmail);
 this.router.get('/verify/resetPasswordToken',UserValidators.VerifyResetPasswordToken(),GlobalMiddleWare.checkError,UserController.VerifyResetPasswordToken)
+this.router.get('/test',UserController.test)
 }
 
     postRoutes(){ 
