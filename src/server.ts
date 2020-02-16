@@ -5,6 +5,7 @@ import { getEnvironmentVariables } from './environments/env';
 import UserRouter from './routers/UserRouter';
 import PostRouter from './routers/PostRouter';
 import CommentRouter from './routers/CommentRouter';
+import { Jobs } from './jobs/Jobs';
 
 export class Server {
 public app: express.Application = express();
@@ -19,6 +20,7 @@ constructor(){
 setConfiguration(){
     this.connectMongodb();
     this.configureBodyParser();
+    // Jobs.runRequiredJobs();
 }
 
 configureBodyParser(){
