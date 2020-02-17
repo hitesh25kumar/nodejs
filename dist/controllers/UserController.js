@@ -194,5 +194,11 @@ class UserController {
             }
         });
     }
+    static test(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield User_1.default.find({ email: 'hitesh25kumar@gmail.com' }).setOptions({ explain: 'executionStats' });
+            res.send(user);
+        });
+    }
 }
 exports.UserController = UserController;

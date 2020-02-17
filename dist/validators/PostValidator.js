@@ -32,5 +32,18 @@ class PostValidators {
                 });
             })];
     }
+    static deletePost() {
+        return [express_validator_1.param('id').custom((id, { req }) => {
+                return Post_1.default.findOne({ _id: id }).then((post) => {
+                    if (post) {
+                        req.post = post;
+                        return true;
+                    }
+                    else {
+                        throw new Error('Post does not Exist');
+                    }
+                });
+            })];
+    }
 }
 exports.PostValidators = PostValidators;

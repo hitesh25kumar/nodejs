@@ -24,6 +24,7 @@ class PostRouter {
         this.router.patch('/edit/:id', GlobalMiddleware_1.GlobalMiddleWare.authenticate, PostValidator_1.PostValidators.editPost(), GlobalMiddleware_1.GlobalMiddleWare.checkError, PostController_1.PostController.editPost);
     }
     deleteRoutes() {
+        this.router.delete('/delete/:id', GlobalMiddleware_1.GlobalMiddleWare.authenticate, PostValidator_1.PostValidators.deletePost(), GlobalMiddleware_1.GlobalMiddleWare.checkError, PostController_1.PostController.deletePost);
     }
 }
 exports.default = new PostRouter().router;

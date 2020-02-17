@@ -7,4 +7,5 @@ export declare class UserController {
     static VerifyResetPasswordToken(req: any, res: any, next: any): void;
     static resetPassword(req: any, res: any, next: any): Promise<void>;
     static updateProfilePic(req: any, res: any, next: any): Promise<void>;
+    static test(req: any, res: any, next: any): Promise<void>;
 }

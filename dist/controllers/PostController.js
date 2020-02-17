@@ -116,5 +116,17 @@ class PostController {
             }
         });
     }
+    static deletePost(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const post = req.post;
+            try {
+                yield post.remove();
+                res.send(post);
+            }
+            catch (e) {
+                next(e);
+            }
+        });
+    }
 }
 exports.PostController = PostController;

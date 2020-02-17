@@ -4,4 +4,5 @@ export declare class PostController {
     static getAllPosts(req: any, res: any, next: any): Promise<void>;
     static getPostById(req: any, res: any, next: any): Promise<void>;
     static editPost(req: any, res: any, next: any): Promise<void>;
+    static deletePost(req: any, res: any, next: any): Promise<void>;
 }

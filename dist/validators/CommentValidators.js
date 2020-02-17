@@ -36,7 +36,7 @@ class CommentValidators {
     }
     static deleteComment() {
         return [express_validator_1.param('id').custom((id, { req }) => {
-                return Comment_1.default.findOne({ _d: id }).then((comment) => {
+                return Comment_1.default.findOne({ _id: id }).then((comment) => {
                     if (comment) {
                         req.comment = comment;
                         return true;

@@ -55,7 +55,10 @@ class CommentController {
     static deleteComment(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             const comment = req.comment;
+            console.log('comment: ', comment);
             try {
+                comment.remove();
+                res.send(comment);
             }
             catch (e) {
                 next(e);

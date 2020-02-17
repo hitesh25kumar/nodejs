@@ -18,6 +18,7 @@ class Server {
     setConfiguration() {
         this.connectMongodb();
         this.configureBodyParser();
+        // Jobs.runRequiredJobs();
     }
     configureBodyParser() {
         this.app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,7 +27,7 @@ class Server {
         this.app.use('/src/uploads', express.static('src/uploads'));
         this.app.use('/api/user/', UserRouter_1.default);
         this.app.use('/api/post/', PostRouter_1.default);
-        this.app.use('/api/comment', CommentRouter_1.default);
+        this.app.use('/api/comment/', CommentRouter_1.default);
     }
     error404Handler() {
         this.app.use((req, res) => {
