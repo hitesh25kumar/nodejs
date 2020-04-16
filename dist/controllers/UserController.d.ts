@@ -8,4 +8,7 @@ export declare class UserController {
     static resetPassword(req: any, res: any, next: any): Promise<void>;
     static updateProfilePic(req: any, res: any, next: any): Promise<void>;
     static test(req: any, res: any, next: any): Promise<void>;
+    static webscraptest(req: any, res: any, next: any): Promise<void>;
+    static sendWhatapp(req: any, res: any, next: any): Promise<void>;
+    static home(req: any, res: any, next: any): Promise<void>;
 }

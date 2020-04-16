@@ -5,7 +5,9 @@ import { getEnvironmentVariables } from './environments/env';
 import UserRouter from './routers/UserRouter';
 import PostRouter from './routers/PostRouter';
 import CommentRouter from './routers/CommentRouter';
+import GroceryRouter from './routers/GrocceryRouter';
 import { Jobs } from './jobs/Jobs';
+import {Auth} from './controllers/sendWhatsapp';
 
 export class Server {
 public app: express.Application = express();
@@ -32,6 +34,8 @@ setRoutes(){
    this.app.use('/api/user/', UserRouter);
    this.app.use('/api/post/', PostRouter);
    this.app.use('/api/comment/', CommentRouter);
+   //Test api
+   this.app.use('/api/groccery/', GroceryRouter);
 }
 
 error404Handler(){

@@ -19,6 +19,10 @@ import {
 
 import * as Cheerio from 'cheerio';
 import * as Request from 'request';
+const accountSid = 'ACc3c5c63ff3146422aa00e14240e74b47';
+const authToken = '7ce004d3edf105a08910a8ea0cc4015f';
+const client = require('twilio')(accountSid, authToken);
+
 
 export class UserController {
 
@@ -243,4 +247,22 @@ res.send(data);
         )
     }
 
+    static async sendWhatapp(req, res, next) {
+        // client.messages.create({
+        //     from: 'whatsapp:+14155238886',
+        //     to:'whatsapp:+919756740984',
+        //     body:'Hello'
+        // }).then(message => res.send(message.sid));
+        res.send({
+            success:true
+        })
+        
+        }
+
+        static async home(req, res, next) {
+            res.send({
+                success:true
+            })
+            
+            }
 }

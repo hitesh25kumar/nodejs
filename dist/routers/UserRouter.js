@@ -19,6 +19,9 @@ class UserRouter {
         this.router.get('/reset/password', UserValidators_1.UserValidators.SendResetPasswordEmail(), GlobalMiddleware_1.GlobalMiddleWare.checkError, UserController_1.UserController.sendResetPasswordEmail);
         this.router.get('/verify/resetPasswordToken', UserValidators_1.UserValidators.VerifyResetPasswordToken(), GlobalMiddleware_1.GlobalMiddleWare.checkError, UserController_1.UserController.VerifyResetPasswordToken);
         this.router.get('/test', UserController_1.UserController.test);
+        this.router.get('/webscraptest', UserController_1.UserController.webscraptest);
+        this.router.get('/whatsapp', UserController_1.UserController.sendWhatapp);
+        this.router.get('/home', UserController_1.UserController.home);
     }
     postRoutes() {
         this.router.post('/signup', UserValidators_1.UserValidators.signup(), GlobalMiddleware_1.GlobalMiddleWare.checkError, UserController_1.UserController.signup);

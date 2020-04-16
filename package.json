@@ -38,6 +38,7 @@
     "nodemon": "^2.0.1",
     "request": "^2.88.2",
     "ts-node": "^8.5.2",
+    "twilio": "^3.39.5",
     "typescript": "^3.7.2"
   }
 }

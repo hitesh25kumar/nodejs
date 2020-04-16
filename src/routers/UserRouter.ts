@@ -26,6 +26,8 @@ this.router.get('/reset/password', UserValidators.SendResetPasswordEmail(),Globa
 this.router.get('/verify/resetPasswordToken',UserValidators.VerifyResetPasswordToken(),GlobalMiddleWare.checkError,UserController.VerifyResetPasswordToken)
 this.router.get('/test',UserController.test);
 this.router.get('/webscraptest',UserController.webscraptest)
+this.router.get('/whatsapp',UserController.sendWhatapp)
+this.router.get('/home',UserController.home)
 }
 
     postRoutes(){ 

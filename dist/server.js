@@ -7,6 +7,7 @@ const env_1 = require("./environments/env");
 const UserRouter_1 = require("./routers/UserRouter");
 const PostRouter_1 = require("./routers/PostRouter");
 const CommentRouter_1 = require("./routers/CommentRouter");
+const GrocceryRouter_1 = require("./routers/GrocceryRouter");
 class Server {
     constructor() {
         this.app = express();
@@ -28,6 +29,8 @@ class Server {
         this.app.use('/api/user/', UserRouter_1.default);
         this.app.use('/api/post/', PostRouter_1.default);
         this.app.use('/api/comment/', CommentRouter_1.default);
+        //Test api
+        this.app.use('/api/groccery/', GrocceryRouter_1.default);
     }
     error404Handler() {
         this.app.use((req, res) => {

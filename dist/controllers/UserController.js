@@ -14,6 +14,11 @@ const utils_1 = require("../utils/utils");
 const NodeMailer_1 = require("../utils/NodeMailer");
 const jwt = require("jsonwebtoken");
 const env_1 = require("../environments/env");
+const Cheerio = require("cheerio");
+const Request = require("request");
+const accountSid = 'ACc3c5c63ff3146422aa00e14240e74b47';
+const authToken = '7ce004d3edf105a08910a8ea0cc4015f';
+const client = require('twilio')(accountSid, authToken);
 class UserController {
     static signup(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -198,6 +203,44 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield User_1.default.find({ email: 'hitesh25kumar@gmail.com' }).setOptions({ explain: 'executionStats' });
             res.send(user);
+        });
+    }
+    static webscraptest(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = [{ title: 'item title', price: 'item price', description: 'description' }];
+            Request('https://webscraper.io/test-sites/e-commerce/allinone', ((error, response, html) => {
+                if (!error && response.statusCode === 200) {
+                    const $ = Cheerio.load(html);
+                    const data = [];
+                    $('.thumbnail').each((index, element) => {
+                        const image = $(element).find('.img-responsive').attr('src');
+                        const title = $(element).find('.title').attr('title');
+                        const description = $(element).find('.description').text();
+                        const price = $(element).find('.price').text();
+                        data.push({ title: title, image: image, description: description, price: price });
+                    });
+                    res.send(data);
+                }
+            }));
+        });
+    }
+    static sendWhatapp(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            // client.messages.create({
+            //     from: 'whatsapp:+14155238886',
+            //     to:'whatsapp:+919756740984',
+            //     body:'Hello'
+            // }).then(message => res.send(message.sid));
+            res.send({
+                success: true
+            });
+        });
+    }
+    static home(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            res.send({
+                success: true
+            });
         });
     }
 }
