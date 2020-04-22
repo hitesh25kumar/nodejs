@@ -15,6 +15,7 @@ class GroceryRouter {
     }
     getRoutes() {
         this.router.get('/home', GrocceryController_1.GrocceryController.home);
+        this.router.get('/productDetails', GrocceryController_1.GrocceryController.productDetails);
     }
 }
 // postRoutes(){ 

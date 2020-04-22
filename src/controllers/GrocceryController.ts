@@ -373,4 +373,78 @@ static home(req,res,next){
         }
     })
 }
+
+static productDetails(req,res,next){
+    res.json(
+        {
+            "productDetails": {
+              "id": "1",
+              "name": "Chakki Atta",
+              "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/91HaH-jDEvL._SY550_.jpg",
+              "summary": "Picked from the finest wheat fields\n100% whole wheat Atta\nGet the super quality taste\nImparts a good aroma and a fluffy look\nAlso helps prevent weight gain",
+              "details": "Traditionally ground, the Chakki Atta is a wholesome product that helps you prepare soft and healthy chapatis and parathas. Prepared from the finest quality grains that are plucked from the premium wheat fields. Contains zero addition of maida, thus providing you with 100% whole wheat flour. Has a rich aroma that wafts all over the house from fluffy chapatis. The whole wheat formulation has added fibres and proteins that prevent weight gain.",
+              "slug": "Chakki-Atta-123",
+              "rate": 4
+            },
+            "productItems": [
+              {
+                "id": "2",
+                "productId": "productId",
+                "quantity": "10 KG",
+                "price": 400,
+                "finalPrice": 349,
+                "availability": 4,
+                "soldOut": false
+              },
+              {
+                "id": "1",
+                "productId": "productId",
+                "quantity": "5 KG",
+                "price": 200,
+                "finalPrice": 149,
+                "availability": 10,
+                "soldOut": false
+              }
+            ],
+            "photosList": [
+              {
+                "id": "1",
+                "entityId": "1",
+                "imageUrl": "asdasdsasafasfasf",
+                "dynamicUrl": "afasfasfsfsdfsdfsd"
+              },
+              {
+                "id": "2",
+                "entityId": "1",
+                "imageUrl": "ssfsdfsfdsfds",
+                "dynamicUrl": "sdfdsfsdfds"
+              },
+              {
+                "id": "3",
+                "entityId": "1",
+                "imageUrl": "ssfsdfsfdsfds",
+                "dynamicUrl": "sdfdsfsdfds"
+              }
+            ],
+            "inclusionList": [
+              {
+                "id": "1",
+                "inclusion": "include order -1 -1"
+              },
+              {
+                "id": "2",
+                "inclusion": "include order -1 -2"
+              },
+              {
+                "id": "3",
+                "inclusion": "include order -1 -3"
+              },
+              {
+                "id": "4",
+                "inclusion": "include order -1 -4"
+              }
+            ]
+          }
+    )
+}
 }

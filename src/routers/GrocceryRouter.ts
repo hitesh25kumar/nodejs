@@ -22,6 +22,7 @@ constructor(){
 
 getRoutes(){
     this.router.get('/home',GrocceryController.home);  
+    this.router.get('/productDetails',GrocceryController.productDetails); 
 }
 
         }
